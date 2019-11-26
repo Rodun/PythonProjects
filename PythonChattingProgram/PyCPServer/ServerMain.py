@@ -26,7 +26,7 @@ class PyCPServer(QWidget):
         self.setLayout(self.MainLayout)
 
         self.setWindowTitle(PyPCServer_Title)
-        self.setGeometry(300, 300, 400, 400)  # move + resize 기능
+        self.setGeometry(300, 300, 600, 400)  # move + resize 기능
         self.show()
 
         self.th = ServerSocket.PyServerSocket()
