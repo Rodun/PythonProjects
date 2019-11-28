@@ -84,7 +84,7 @@ class QtForm(QWidget):
         author_edit = QLineEdit()
         review_edit = QTextEdit()
 
-        # [4-3] Grid
+        # [4-3] Grid - Git용 체크
         grid = QGridLayout()
         grid.setSpacing(10)
 
