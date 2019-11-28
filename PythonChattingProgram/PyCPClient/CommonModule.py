@@ -3,5 +3,5 @@ import math
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QAction, qApp, QGridLayout, QLayout, QLineEdit,
-                             QSizePolicy, QToolButton, QFrame, QWidget)
+                             QSizePolicy, QToolButton, QFrame, QWidget, QLabel, QTextEdit)
 from PyQt5.QtGui import QKeyEvent, QIcon

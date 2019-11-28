@@ -11,10 +11,7 @@ class PyCPClient(QMainWindow):
 
         # -Widget Initialize-
         self.MenuBar = None
-        self.MenuList = {}
-        self.setting_gui(["File", "Edit", "View", "Tool"])
-
-        print("Address: {0}".format(self.MenuList.get("File") ) )
+        self.setting_gui()
 
         # -Window Setting-
         self.setWindowTitle(PyCPClient_Title)
@@ -25,20 +22,37 @@ class PyCPClient(QMainWindow):
         self.CSocket = None
         self.setting_client_socket()
 
-    def setting_gui(self, menu_name_list):
+    def setting_gui(self):
         # [1]Menu Bar
         self.MenuBar = self.menuBar()
 
         # [1-1]Menu List
-        self.setting_gui_menu(menu_name_list)
+        file_menu = self.MenuBar.addMenu("File")
+        file_menu.addAction(self.setting_gui_action("Exit", qApp.exit, "Ctrl+Q", "Exit App"))
 
-    def setting_gui_menu(self, menu_name_list):
-        list_count = 0
-        while list_count < len(menu_name_list):
-            self.MenuList[menu_name_list[list_count]] = self.MenuBar.addMenu(menu_name_list[list_count])
-            list_count += 1
+        edit_menu = self.MenuBar.addMenu("Edit")
+        edit_menu.addAction(self.setting_gui_action("Edit", qApp.exit))
 
-        print("[Menu List]\n{0}".format(self.MenuList.items()))
+        view_menu = self.MenuBar.addMenu("View")
+        view_menu.addAction(self.setting_gui_action("View", qApp.exit, "Alt+T"))
+
+        # [2]Tool Bar
+        tool_bar = self.addToolBar("Exit")
+        tool_bar.addAction(self.setting_gui_action("Exit", qApp.exit))
+
+        # [3]Status Bar
+        self.statusBar().showMessage("ready")
+
+        # [4] Widgets
+        editor = QtForm()
+        self.setCentralWidget(editor)
+
+    def setting_gui_action(self, name, trigger, shortcut="", status_tip=""):
+        _Action = QAction(QIcon(""), name, self)
+        _Action.setShortcut(shortcut)
+        _Action.setStatusTip(status_tip)
+        _Action.triggered.connect(trigger)
+        return _Action
 
     def setting_client_socket(self):
         self.CSocket = ClientSocket.PyClientSocket()
@@ -52,6 +66,38 @@ class PyCPClient(QMainWindow):
 
         elif e.key() == Qt.Key_Enter:
             print("Enter")
+
+
+class QtForm(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.text_ui()
+
+    def text_ui(self):
+        # [4-1] Label
+        title = QLabel("Title")
+        author = QLabel("Author")
+        review = QLabel("Review")
+
+        # [4-2] Editor
+        title_edit = QLineEdit()
+        author_edit = QLineEdit()
+        review_edit = QTextEdit()
+
+        # [4-3] Grid
+        grid = QGridLayout()
+        grid.setSpacing(10)
+
+        grid.addWidget(title, 1, 0)
+        grid.addWidget(title_edit, 1, 1)
+
+        grid.addWidget(author, 2, 0)
+        grid.addWidget(author_edit, 2, 1)
+
+        grid.addWidget(review, 3, 0)
+        grid.addWidget(review_edit, 3, 1, 5, 1)
+
+        self.setLayout(grid)
 
 
 if __name__ == "__main__":
