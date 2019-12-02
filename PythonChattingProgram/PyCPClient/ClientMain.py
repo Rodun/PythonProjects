@@ -71,33 +71,45 @@ class PyCPClient(QMainWindow):
 class QtForm(QWidget):
     def __init__(self):
         super().__init__()
+
+        # [4-1] Label
+        self.title = QLabel("Title")
+        self.author = QLabel("Author")
+        self.review = QLabel("Review")
+
+        # [4-2] Editor
+        self.title_edit = QLineEdit()
+        self.author_edit = QLineEdit()
+        self.review_edit = QTextEdit()
+
         self.text_ui()
 
     def text_ui(self):
-        # [4-1] Label
-        title = QLabel("Title")
-        author = QLabel("Author")
-        review = QLabel("Review")
 
-        # [4-2] Editor
-        title_edit = QLineEdit()
-        author_edit = QLineEdit()
-        review_edit = QTextEdit()
+        # [4-2] Button
+        exBtn = QPushButton("exBtn")
+        exBtn.move(300, 300)
+        exBtn.clicked.connect(self.on_click_btn)
 
-        # [4-3] Grid - Git용 체크
+        # [4-3] Grid
         grid = QGridLayout()
         grid.setSpacing(10)
 
-        grid.addWidget(title, 1, 0)
-        grid.addWidget(title_edit, 1, 1)
+        grid.addWidget(self.title, 1, 0)
+        grid.addWidget(self.title_edit, 1, 1)
 
-        grid.addWidget(author, 2, 0)
-        grid.addWidget(author_edit, 2, 1)
+        grid.addWidget(self.author, 2, 0)
+        grid.addWidget(self.author_edit, 2, 1)
 
-        grid.addWidget(review, 3, 0)
-        grid.addWidget(review_edit, 3, 1, 5, 1)
+        grid.addWidget(self.review, 3, 0)
+        grid.addWidget(self.review_edit, 3, 1, 5, 1)
+
+        grid.addWidget(exBtn, 9, 1, 1, 1)
 
         self.setLayout(grid)
+
+    def on_click_btn(self):
+        self.review_edit.append(self.title_edit.text() + "\n" + self.author_edit.text())
 
 
 if __name__ == "__main__":

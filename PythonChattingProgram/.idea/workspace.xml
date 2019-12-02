@@ -136,7 +136,25 @@
       <option name="presentableId" value="Default" />
       <updated>1574082938573</updated>
     </task>
+    <task id="LOCAL-00001" summary="올려봐 왜 안올라가 이거">
+      <created>1574949169676</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574949169677</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -150,5 +168,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="이걸로 올려볼까 ㅋㅋ&#10;&#10;PyCharm에서 직접 Git으로 업로드...&#10;&#10;PyQt5의 QMainWineow와 QWidget을 이용하여 간단한 정보 입력 창을 만듬" />
+    <MESSAGE value="올려봐 왜 안올라가 이거" />
+    <option name="LAST_COMMIT_MESSAGE" value="올려봐 왜 안올라가 이거" />
   </component>
 </project>
