@@ -4,7 +4,7 @@ from PyCPClient import ClientSocket
 PyCPClient_Title = "PyCPClient"
 
 
-class PyCPClient(QMainWindow):
+class PyCPClient(QMainWindow):  # Main Window Class
 
     def __init__(self):
         super().__init__()
@@ -68,7 +68,7 @@ class PyCPClient(QMainWindow):
             print("Enter")
 
 
-class MainClientWidget(QWidget):
+class MainClientWidget(QWidget):  # Widget Class
     def __init__(self, parent):
         super().__init__()
 
@@ -80,6 +80,8 @@ class MainClientWidget(QWidget):
         self.review_edit = QTextEdit(parent)
         self.send_button = QPushButton("Send", parent)
         self.table_widget = QTableWidget(parent)
+        self.image_label_1 = QLabel(parent)
+        self.open_dialog_button = QPushButton("Open Dialog", parent)
 
         self.setting_widget(parent)
 
@@ -107,17 +109,55 @@ class MainClientWidget(QWidget):
 
         # [4] Table
         self.table_widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        col_headers = ["Title", "Text", "Source"]
+        col_headers = ["Title", "Author", "Review"]
         self.table_widget.setColumnCount(len(col_headers))
         self.table_widget.setHorizontalHeaderLabels(col_headers)
-        self.table_widget.setRowCount(10)
-        self.table_widget.setGeometry(default_x + 200, default_y, 600, 400)
+        self.table_widget.setRowCount(20)
+        self.table_widget.setGeometry(default_x + 200, default_y, 200, 400)
+        # [4-1] Table Data Setting (feat. CSV)
+        self.setting_table_data(self.table_widget)
+
+        # [5] Image
+        self.setting_image_label(self.image_label_1, "resources\\Lion.jpg")
+        self.image_label_1.setGeometry(450, 50, 200, 200)
+
+        # [6] Dialog
+        # [6-1] open Dialog Button
+        self.open_dialog_button.setGeometry(450, default_y + 70 + 200, 100, 20)
+        self.open_dialog_button.clicked.connect(self.show_dialog)
 
     def on_click_send_btn(self):
         self.review_edit.setText(self.title_edit.text() + "\n" + self.author_edit.text())
 
     def setting_table_data(self, table):
-        pass
+        title_csv = []
+        author_csv = []
+        review_csv = []
+
+        with open("resources\\TestData.csv", "r+") as f:
+            for row in csv.DictReader(f):
+                title_csv.append(row["Title"])
+                author_csv.append(row["Author"])
+                review_csv.append(row["Review"])
+
+        print(title_csv)
+        print(author_csv)
+        print(review_csv)
+
+        for row, (_title, _author, _review) in enumerate(zip(title_csv, author_csv, review_csv)):
+            table.setItem(row, 0, QTableWidgetItem(_title))
+            table.setItem(row, 1, QTableWidgetItem(_author))
+            table.setItem(row, 2, QTableWidgetItem(_review))
+
+        table.resizeColumnsToContents()
+        table.resizeRowsToContents()
+
+    def setting_image_label(self, img_lbl, img_path):
+        pix_map = QPixmap(img_path)
+        img_lbl.setPixmap(pix_map)
+
+    def show_dialog(self):
+        test, ok = QInputDialog.getText(self, "input Dialog", "Enter your name:")
 
 
 if __name__ == "__main__":
