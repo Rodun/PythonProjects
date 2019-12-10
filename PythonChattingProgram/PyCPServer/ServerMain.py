@@ -1,50 +1,12 @@
-# from PyCPServer.CommonModule import *
-# from PyCPServer import ServerSocket
-# import time
-#
-# PyPCServer_Title = "PyPCServer"
-#
-#
-# class PyCPServer(QWidget):
-#
-#     def __init__(self):
-#         super().__init__()
-#
-#         self.ChatScreen = QLineEdit("이곳은 서버 입니다.")
-#         self.ChatScreen.setReadOnly(True)
-#         self.ChatScreen.setAlignment(Qt.AlignRight)
-#         self.ChatScreen.setMaxLength(15)
-#
-#         self.ServerOnBtn = QToolButton()
-#         self.ServerOnBtn.setText("Server On")
-#         self.ServerOnBtn.clicked.connect(self.wait_client)
-#
-#         self.MainLayout = QGridLayout()
-#         self.MainLayout.addWidget(self.ChatScreen, 0, 0)
-#         self.MainLayout.addWidget(self.ServerOnBtn, 1, 0)
-#
-#         self.setLayout(self.MainLayout)
-#
-#         self.setWindowTitle(PyPCServer_Title)
-#         self.setGeometry(300, 300, 600, 400)  # move + resize 기능
-#         self.show()
-#
-#         self.th = ServerSocket.PyServerSocket()
-#
-#     def keyPressEvent(self, e):  # 키 입력 이벤트 함수
-#         if e.key() == Qt.Key_Escape:  # ecs 로 종료
-#             print("Escape")
-#             sys.exit()
-#
-#     # 접속대기
-#     def wait_client(self):
-#         self.ChatScreen.setText("접속 대기중...")
-#         return
-
 import sys
-from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
+from functools import partial
+
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+
+from PyCPServer.ServerSocket import *
 
 form_class = uic.loadUiType("ServerMainWindow.ui")[0]
 
@@ -52,23 +14,50 @@ form_class = uic.loadUiType("ServerMainWindow.ui")[0]
 class ServerMainWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
+
+        self.s = PyServerSocket(self)
 
         # self.textBrowser_chatting = QTextBrowser(self)
         # self.listView_users = QListView(self)
         # self.pushButton_sendchat = QPushButton(self)
         # self.pushButton_endchat = QPushButton(self)
 
-        self.textBrowser_chatting.setText("이러면 외워서 해야 하잖어...")
+        self.setupUi(self)
+
+        self.model = QStringListModel()
+
+        self.textBrowser_chatting.setText("")
         self.pushButton_sendchat.clicked.connect(self.btn_clicked_send_chat)
+        self.pushButton_endchat.clicked.connect(self.quit_application)
+        self.pushButton_serverstart.clicked.connect(partial(self.btn_clicked_server_start, True))
+
+    def btn_clicked_server_start(self, state):
+        if state:
+            ip = "127.0.0.1"
+            port = "8081"
+            if self.s.start(ip, int(port)):
+                self.pushButton_serverstart.setText("서버 종료")
+            else:
+                self.s.stop()
+                self.msg.clear()
+                self.pushButton_serverstart.setText("서버 실행")
+
+    def updateClient(self):
+        print("update client")
+
+    def updateMsg(self, msg):
+        print("update msg")
 
     def btn_clicked_send_chat(self):
         QMessageBox.about(self, "보내기 성공", "클릭")
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Escape:
-            print("Escape")
-            sys.exit()
+            self.quit_application()
+
+    def quit_application(self):
+        print("quit_application")
+        sys.exit()
 
 
 if __name__ == "__main__":
