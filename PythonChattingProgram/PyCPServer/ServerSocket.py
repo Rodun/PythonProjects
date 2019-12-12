@@ -1,6 +1,6 @@
-from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from socket import *
 from threading import *
+from PyQt5.QtCore import Qt, pyqtSignal, QObject
 
 
 class Signal(QObject):
@@ -60,7 +60,7 @@ class PyServerSocket:
             else:
                 self.clients.append(client)
                 self.ip.append(addr)
-                self.conn.emit()
+                # self.conn.emit()
                 t = Thread(target=self.receive, args=(addr, client))
                 self.threads.append(t)
                 t.start()
@@ -96,13 +96,13 @@ class PyServerSocket:
         self.ip.remove(addr)
         self.clients.remove(client)
 
-        self.conn.emit()
+        # self.conn.emit()
 
         i = 0
         for t in self.threads[:]:
             if not t.isAlive():
                 del(self.threads[i])
-            i+=1
+            i += 1
 
         self.resourceInfo()
 
@@ -114,7 +114,7 @@ class PyServerSocket:
         self.clients.clear()
         self.threads.clear()
 
-        self.conn.emit()
+        self.conn.conn_signal.emit()
 
         self.resourceInfo()
 

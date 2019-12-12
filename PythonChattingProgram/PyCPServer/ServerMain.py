@@ -24,23 +24,22 @@ class ServerMainWindow(QMainWindow, form_class):
 
         self.setupUi(self)
 
-        self.model = QStringListModel()
-
         self.textBrowser_chatting.setText("")
         self.pushButton_sendchat.clicked.connect(self.btn_clicked_send_chat)
         self.pushButton_endchat.clicked.connect(self.quit_application)
-        self.pushButton_serverstart.clicked.connect(partial(self.btn_clicked_server_start, True))
+        self.pushButton_serverstart.setCheckable(True)
+        self.pushButton_serverstart.toggled.connect(partial(self.btn_clicked_server_start))
 
     def btn_clicked_server_start(self, state):
         if state:
             ip = "127.0.0.1"
             port = "8081"
-            if self.s.start(ip, int(port)):
-                self.pushButton_serverstart.setText("서버 종료")
-            else:
-                self.s.stop()
-                self.msg.clear()
-                self.pushButton_serverstart.setText("서버 실행")
+            self.s.start(ip, int(port))
+            self.pushButton_serverstart.setText("서버 종료")
+        else:
+            self.s.stop()
+            # self.msg.clear()
+            self.pushButton_serverstart.setText("서버 실행")
 
     def updateClient(self):
         print("update client")
@@ -57,6 +56,7 @@ class ServerMainWindow(QMainWindow, form_class):
 
     def quit_application(self):
         print("quit_application")
+        self.s.stop()
         sys.exit()
 
 

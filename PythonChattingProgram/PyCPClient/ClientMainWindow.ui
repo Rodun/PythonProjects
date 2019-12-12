@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>567</width>
+    <width>711</width>
     <height>427</height>
    </rect>
   </property>
@@ -122,13 +122,26 @@
      <string>Client UI</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_connectserver">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>30</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>서버 접속하기</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>567</width>
+     <width>711</width>
      <height>21</height>
     </rect>
    </property>

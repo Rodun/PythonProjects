@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a8ae5154-9b40-42c7-80a8-8254adc3316d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyCPClient/ClientMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyCPClient/ClientMainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientMainWindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyCPClient/ClientSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientSocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPServer/ServerMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyCPServer/ServerMainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerMainWindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPServer/ServerSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerSocket.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +37,7 @@
   <component name="ProjectId" id="1Tn5ITJ276mczuGCKjTQdEuWykC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PyCalculator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RunDashboard">

@@ -1,40 +1,75 @@
 from socket import *
 from threading import *
+from PyQt5.QtCore import Qt, pyqtSignal, QObject
+
+
+class Signal(QObject):
+    recv_signal = pyqtSignal(str)
+    disconn_signal = pyqtSignal()
 
 
 class PyClientSocket:
+    def __del__(self):
+        self.stop()
 
-    def __init__(self):
-        # Client Socket
-        self.PySocket = None
+    def __init__(self, parent):
+        self.parent = parent
+        self.client = None
+        self.t = None
 
-        # Receive Message Thread
-        self.AcceptThread = None
+        self.recv = Signal()
+        self.recv.recv_signal.connect(self.parent.updateMsg)
+        self.disconn = Signal()
+        self.disconn.disconn_signal.connect(self.parent.updateDisconnect)
 
-    def connect_to_server(self, setScreenText):
-        self.PySocket = socket(AF_INET, SOCK_STREAM)
+        self.bConnect = False
+
+    def connectServer(self, ip, port):
+        self.client = socket(AF_INET, SOCK_STREAM)
 
         try:
-            self.PySocket.connect(("127.0.0.1", 8081))
-        except error:
-            print("서버 접속 실패: " + error)
+             self.client.connect((ip, port))
+        except Exception as e:
+            print("Connect Error : ", e)
             return False
+        else:
+            self.bConnect = True
+            self.t = Thread(target=self.receive, args=(self.client,))
+            self.t.start()
+            print("Connected")
 
-        print("서버 접속 완료")
+    def stop(self):
+        self.bConnect = False
+        if hasattr(self, "client"):
+            self.client.close()
+            del(self.client)
+            print("Client Stop")
+            self.disconn.disconn_signal.emit()
 
-        while True:
-            setScreenText = self.PySocket.recv(256).decode("UTF-8")
+    def receive(self, client):
+        while self.bConnect:
+            try:
+                recv = client.recv(1024)
+            except Exception as e:
+                print("Recv() Error : ", e)
+                break
+            else:
+                msg = str(recv, encoding="utf-8")
+                if msg:
+                    self.recv.recv_signal.emit(msg)
+                    print("[RECV]: ", msg)
 
-        return True
+        self.stop()
 
-    def accept_thread(self):
-        self.AcceptThread = Thread(target=self.thread_body, args=())
-        self.AcceptThread.start()
+    def send(self, msg):
+        if not self.bConnect:
+            return
 
-    def send_message(self, message):
-        def message_handle():
-            self.PySocket.send(message.encode("UTF-8"))
-            print("메세지 전송!" + message)
-        return message_handle
+        try:
+            self.client.send(msg.encode())
+        except Exception as e:
+            print("Send() Error: ", e)
+
+
 
 
