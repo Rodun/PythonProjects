@@ -96,7 +96,7 @@ class PyServerSocket:
         self.ip.remove(addr)
         self.clients.remove(client)
 
-        # self.conn.emit()
+        self.conn.conn_signal.emit()
 
         i = 0
         for t in self.threads[:]:

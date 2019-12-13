@@ -4,9 +4,9 @@
     <list default="true" id="a8ae5154-9b40-42c7-80a8-8254adc3316d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPClient/ClientMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyCPClient/ClientMainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientMainWindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPClient/ClientSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPClient/ClientSocket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPServer/ServerMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyCPServer/ServerMainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerMainWindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyCPServer/ServerSocket.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyCPServer/ServerSocket.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +74,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ServerMain" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="ServerMain" type="PythonConfigurationType" factoryName="Python">
       <module name="PythonChattingProgram" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,38 +95,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ServerSocket" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PythonChattingProgram" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PyCPServer" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PyCPServer/ServerSocket.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.ClientMain" />
       <item itemvalue="Python.ServerMain" />
-      <item itemvalue="Python.ServerSocket" />
+      <item itemvalue="Python.ClientMain" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.ServerMain" />
-        <item itemvalue="Python.ServerSocket" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -176,5 +148,13 @@
     <MESSAGE value="이걸로 올려볼까 ㅋㅋ&#10;&#10;PyCharm에서 직접 Git으로 업로드...&#10;&#10;PyQt5의 QMainWineow와 QWidget을 이용하여 간단한 정보 입력 창을 만듬" />
     <MESSAGE value="올려봐 왜 안올라가 이거" />
     <option name="LAST_COMMIT_MESSAGE" value="올려봐 왜 안올라가 이거" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.client" language="Python" />
+        <watch expression="self.client._closed" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

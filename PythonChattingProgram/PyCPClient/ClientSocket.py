@@ -40,7 +40,7 @@ class PyClientSocket:
 
     def stop(self):
         self.bConnect = False
-        if hasattr(self, "client"):
+        if hasattr(self, "client") and (not self.client._closed):
             self.client.close()
             del(self.client)
             print("Client Stop")

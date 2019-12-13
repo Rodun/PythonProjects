@@ -16,9 +16,11 @@ class ServerMainWindow(QMainWindow, form_class):
         super().__init__()
 
         self.s = PyServerSocket(self)
+        self.msg = ""
+        self.temp_string = QListWidgetItem()
 
         # self.textBrowser_chatting = QTextBrowser(self)
-        # self.listView_users = QListView(self)
+        # listWidget_users = QListWidget(self)
         # self.pushButton_sendchat = QPushButton(self)
         # self.pushButton_endchat = QPushButton(self)
 
@@ -33,12 +35,12 @@ class ServerMainWindow(QMainWindow, form_class):
     def btn_clicked_server_start(self, state):
         if state:
             ip = "127.0.0.1"
-            port = "8081"
+            port = "10020"
             self.s.start(ip, int(port))
             self.pushButton_serverstart.setText("서버 종료")
         else:
             self.s.stop()
-            # self.msg.clear()
+            self.listWidget_users.clear()
             self.pushButton_serverstart.setText("서버 실행")
 
     def updateClient(self):

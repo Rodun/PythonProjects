@@ -24,7 +24,7 @@ class ClientMainWindow(QMainWindow, form_class):
     def connectClicked(self):
         if self.c.bConnect == False:
             ip = "127.0.0.1"
-            port = "8081"
+            port = "10020"
             if self.c.connectServer(ip, int(port)):
                 self.pushButton_connectserver.setText("접속 종료하기")
             else:
