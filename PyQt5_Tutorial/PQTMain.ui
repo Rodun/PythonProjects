@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>727</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>390</y>
+      <y>420</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -37,13 +37,87 @@
      <string>Quit</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_testing">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>20</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(35, 20, 255);
+background-color: rgb(156, 255, 156);
+font: 75 11pt &quot;Consolas&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Testing</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_readxlsx">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>90</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>read xlsx</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>491</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QTextBrowser" name="textBrowser_info">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>411</width>
+        <height>341</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_xlsx">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>451</width>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>727</width>
      <height>21</height>
     </rect>
    </property>
