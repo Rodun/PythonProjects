@@ -73,3 +73,33 @@ print(list_y)
 ly = [88, 77]
 list_y.extend(ly) 
 print(list_y)
+
+
+# Tuple: 순서(o), 중복(o), 수정(x), 삭제(x)
+
+TPA = ()
+TPB = (1, )
+TPC = (1, 2, 3, 4)
+TPD = (10, 100, ('a', 'b', 'c'))
+
+# 출력
+print(TPC[2])
+print(TPC[3])
+print(TPD[2])
+print(TPD[2][1])
+
+# 슬라이싱
+print(TPD[2:])
+print(TPD[2][0:2])
+
+# 연산
+print(TPC + TPD)
+print(TPC * 3)
+
+# 함수
+TP_Z = (5, 2, 1, 3, 4)
+print(TP_Z)
+print(3 in TP_Z)
+
+print(TP_Z.index(5)) # 3이라는 원소의 위치(index)를 반환한다.
+print(TP_Z.count(1)) # 1이라는 원소가 튜플에 몇개가 존재하는지 갯수를 반환.
